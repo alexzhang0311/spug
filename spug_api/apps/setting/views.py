@@ -13,7 +13,7 @@ from apps.setting.utils import AppSetting
 from apps.setting.models import Setting, KEYS_DEFAULT
 from copy import deepcopy
 import platform
-import ldap
+# import ldap
 
 
 class SettingView(AdminView):
@@ -81,9 +81,10 @@ def ldap_test(request):
     ).parse(request.body)
     if error is None:
         try:
-            con = ldap.initialize("ldap://{0}:{1}".format(form.server, form.port), bytes_mode=False)
-            con.simple_bind_s(form.admin_dn, form.password)
-            return json_response()
+            pass
+            # con = ldap.initialize("ldap://{0}:{1}".format(form.server, form.port), bytes_mode=False)
+            # con.simple_bind_s(form.admin_dn, form.password)
+            # return json_response()
         except Exception as e:
             error = eval(str(e))
             return json_response(error=error['desc'])

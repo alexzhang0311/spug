@@ -10,7 +10,7 @@ from libs.push import send_login_code
 from apps.account.models import User, Role, History
 from apps.setting.utils import AppSetting
 from apps.account.utils import verify_password
-from libs.ldap import LDAP
+# from libs.ldap import LDAP
 from functools import partial
 import user_agents
 import ipaddress
@@ -200,8 +200,8 @@ def login(request):
             config = AppSetting.get_default('ldap_service')
             if not config:
                 return handle_response(error='请在系统设置中配置LDAP后再尝试通过该方式登录')
-            ldap = LDAP(**config)
-            is_success, message = ldap.valid_user(form.username, form.password)
+            # ldap = LDAP(**config)
+            # is_success, message = ldap.valid_user(form.username, form.password)
             if is_success:
                 if not user:
                     user = User.objects.create(username=form.username, nickname=form.username, type=form.type)
